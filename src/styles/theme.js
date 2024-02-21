@@ -12,6 +12,7 @@ export default {
       ALL_WHITE: "#FFFFFF", 
 
       PINK: "#FF859B",
+      PINK_OPACITY: "#FF859B0D",
   
       GRAY_100: "#666360",
       GRAY_200: "#CAC4CF",

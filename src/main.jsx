@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle  from "./styles/global";
 import theme from "./styles/theme";
 
-import { SignUp } from "./Pages/SignUp";
+import { Header } from "./Components/Header";
 
 import { Routes } from "./routes";
 

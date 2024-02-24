@@ -11,7 +11,7 @@ export function Header() {
                 <Input placeholder="Pesquisar pelo título"/>
             </Form>
             
-            <Profile to={"/register"}>
+            <Profile to={"/profile"}>
                 <div>
                     <strong>Bruno Rezende</strong>
                     <Link to="">sair</Link>

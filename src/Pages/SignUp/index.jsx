@@ -1,13 +1,42 @@
 import { Input } from "../../Components/Input";
 import { Button } from "../../Components/Button";
+import { api } from "../../services/api";
 
-import { FiMail, FiLock, FiUser, FiArrowLeft } from "react-icons/fi"
-import { Link } from "react-router-dom";
+import { FiMail, FiLock, FiUser, FiArrowLeft } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { Background, Container, Form } from "./style";
 
 
 export function SignUp() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    function handleSignUp(e) {
+        e.preventDefault();
+        
+        if(!name || !email || !password) {
+            return alert("Preencha todos os campos para efetuar o cadastro.")
+        }
+
+        api.post("/user", { name, email, password })
+        .then(() => {
+            alert("Usuário criado com sucesso.");
+            navigate("/");
+        })
+        .catch(error => {
+            if(error.response){
+                alert(error.response.data.message);
+            } else{
+                alert("Não foi possível cadastrar.");
+            }
+        })
+    }
+
     return (
         <Container>
             <Form>
@@ -20,19 +49,25 @@ export function SignUp() {
                     type="text"
                     icon={FiUser}
                     placeholder="Nome"
+                    onChange={e => setName(e.target.value)}
                 />
                 <Input 
                     type="email"
                     icon={FiMail}
                     placeholder="E-mail"
+                    onChange={e => setEmail(e.target.value)}
                 />
                 <Input 
                     type="password"
                     icon={FiLock}
                     placeholder="Senha"
+                    onChange={e => setPassword(e.target.value)}
                 />
 
-                <Button title="Cadastrar"/>
+                <Button 
+                    title="Cadastrar"
+                    onClick={handleSignUp}
+                />
                     
                 <Link to="/">
                     <FiArrowLeft />
